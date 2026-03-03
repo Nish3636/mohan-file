@@ -1,42 +1,47 @@
-// console.log("hello");  --> Single line comment
+// script.js
 
-/*
+// DOM manipulation
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById('toggle-menu');
+    const menu = document.getElementById('menu');
 
-Multiple lines comment
+    toggleButton.addEventListener('click', () => {
+        menu.classList.toggle('open');
+    });
+});
 
-console.log("hellw world");
-console.log("hellw world");
-console.log("hellw world");
-console.log("hellw world");
+// Smooth scrolling
+const links = document.querySelectorAll('a[href^="#"]');
+links.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    });
+});
 
-*/
+// Event listeners for form validation
+const form = document.getElementById('contact-form');
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
 
-/*
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-===> Printing Statement <===
+    if (!emailPattern.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
 
-console.log("hello Mohan");
+    if (message.trim() === '') {
+        alert('Message field cannot be empty.');
+        return;
+    }
 
-document.write("hello mohan");
-
-alert("Hello Mohan");
-
-confirm("Are You Mohan? This is You");
-
-prompt("Enter your age :");
-
-console.error("This is a error message");
-
-console.warn("this is a warning message");
-
-console.clear();
-
-*/
-
-// example : Mini project
-
-let age = prompt("Enter your age : ");
-console.log("Your age is : " + age);
-confirm("Really your age is : " + age);
-document.write("your age is : "+ age);
-
+    // If validation passes, you can add code here to send the form data
+    form.submit();
+});
